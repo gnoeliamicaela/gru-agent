@@ -1,0 +1,32 @@
+export interface ParticipantStatusResult {
+  found: boolean;
+  participant_id?: string;
+  nombre?: string;
+  etapa_actual?: string;
+  items?: { tipo: string; nombre: string; estado: string; motivo_rechazo: string | null }[];
+}
+
+export interface StageRequirementsResult {
+  found: boolean;
+  etapa?: string;
+  orden_etapa?: number;
+  items?: { tipo: string; nombre: string; orden: number }[];
+  catalogo_completo?: {
+    etapa: string;
+    orden_etapa: number;
+    items: { tipo: string; nombre: string; orden: number }[];
+  }[];
+}
+
+export interface FaqResult {
+  found: boolean;
+  topic?: string;
+  proposito?: string;
+  que_implica?: string;
+  dudas_comunes?: { pregunta: string; respuesta: string }[];
+}
+
+export interface EscalateResult {
+  escalated: true;
+  delivered: boolean;
+}
