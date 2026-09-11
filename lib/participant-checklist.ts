@@ -2,7 +2,7 @@ import type { Participant, ItemTipo } from "@/lib/mock-data";
 import { getStageRequirements, normalize } from "@/lib/stage-requirements";
 import type { EtapaNombre, StageRequirements } from "@/lib/stage-requirements";
 
-export type ChecklistState = "completo" | "pendiente" | "falta";
+export type ChecklistState = "completo" | "pendiente" | "rechazado" | "falta";
 
 export interface ChecklistItem {
   tipo: ItemTipo;
@@ -51,6 +51,26 @@ export function getParticipantChecklist(
         nombre: catalogItem.nombre,
         orden: catalogItem.orden,
         estado: "completo" as const,
+        motivo_rechazo: null,
+      };
+    }
+
+    if (participantItem.estado === "rechazado") {
+      return {
+        tipo: catalogItem.tipo,
+        nombre: catalogItem.nombre,
+        orden: catalogItem.orden,
+        estado: "rechazado" as const,
+        motivo_rechazo: participantItem.motivo_rechazo,
+      };
+    }
+
+    if (participantItem.estado === "pendiente") {
+      return {
+        tipo: catalogItem.tipo,
+        nombre: catalogItem.nombre,
+        orden: catalogItem.orden,
+        estado: "pendiente" as const,
         motivo_rechazo: null,
       };
     }

@@ -9,6 +9,9 @@ export interface FaqEntry {
 }
 
 export const FAQ_DATA: FaqEntry[] = [
+  // ─────────────────────────────────────────────
+  // ETAPA 1 — Presentación de documentación personal y universitaria
+  // ─────────────────────────────────────────────
   {
     topic: "Comprobante de pago de inscripción",
     aliases: ["pago inscripción", "comprobante pago"],
@@ -22,14 +25,34 @@ export const FAQ_DATA: FaqEntry[] = [
     ],
   },
   {
+    topic: "Datos del participante",
+    aliases: ["datos personales", "informacion personal"],
+    proposito: "Registrar tus datos personales reales para el proceso de inscripción y visa.",
+    que_implica: "Cargar fecha de nacimiento, lugar de residencia, lugar de nacimiento, condiciones médicas, etc.",
+    dudas_comunes: [
+      {
+        pregunta: "¿Por qué el lugar de nacimiento tiene que ser el real?",
+        respuesta: "Porque es un dato que se cruza en el trámite de la visa; una inconsistencia entre lo declarado y lo real puede generar problemas en el proceso.",
+      },
+      {
+        pregunta: "¿Puedo poner datos aproximados si no estoy seguro?",
+        respuesta: "No, todos los datos cargados tienen que ser reales y exactos.",
+      },
+    ],
+  },
+  {
     topic: "DNI",
     aliases: ["documento de identidad", "cedula"],
-    proposito: "Verificar tu identidad y datos personales.",
-    que_implica: "Subir una foto clara de ambos lados de tu DNI (frente y dorso).",
+    proposito: "Verificar tu identidad y acreditar que tenés residencia en Argentina.",
+    que_implica: "Subir una foto clara de ambos lados de tu DNI (frente y dorso). Podés tener otra nacionalidad, pero el DNI tiene que demostrar residencia argentina.",
     dudas_comunes: [
       {
         pregunta: "¿Puede estar vencido?",
         respuesta: "Preferiblemente no. Si está muy cerca del vencimiento, es mejor renovarlo primero.",
+      },
+      {
+        pregunta: "¿Tengo que ser ciudadano argentino para aplicar?",
+        respuesta: "No necesariamente — podés tener otra nacionalidad — pero el DNI presentado tiene que demostrar residencia en Argentina, porque hay que acreditar que estás estudiando en el país mientras hacés el Work and Travel.",
       },
     ],
   },
@@ -37,11 +60,35 @@ export const FAQ_DATA: FaqEntry[] = [
     topic: "Pasaporte vigente",
     aliases: ["pasaporte", "passport"],
     proposito: "Acreditar que tenés un documento válido para viajar a EE.UU.",
-    que_implica: "Subir la página de datos de tu pasaporte (foto, número, fechas de validez).",
+    que_implica: "Subir la página de datos de tu pasaporte (foto, número, fechas de validez). No necesita ser argentino.",
     dudas_comunes: [
       {
         pregunta: "¿Cuál es la validez mínima?",
-        respuesta: "Tu pasaporte debe ser válido por al menos 6 meses a partir de tu viaje.",
+        respuesta: "Tu pasaporte debe ser válido por al menos 6 meses a partir de tu ingreso a Estados Unidos.",
+      },
+    ],
+  },
+  {
+    topic: "Foto tipo CV profesional",
+    aliases: ["foto perfil", "foto busto", "foto CV"],
+    proposito: "Presentar tu imagen a los empleadores estadounidenses de forma profesional.",
+    que_implica: "Subir una foto de busto, estilo CV profesional, donde se vea la cara con claridad.",
+    dudas_comunes: [
+      {
+        pregunta: "¿Sirve una selfie o una foto informal?",
+        respuesta: "No, tiene que ser una foto tipo currículum profesional, no una selfie ni una foto casual.",
+      },
+    ],
+  },
+  {
+    topic: "Datos de contacto de emergencia",
+    aliases: ["contacto emergencia", "emergency contact"],
+    proposito: "Tener a alguien de referencia en Argentina por si sucede algo con el participante durante el programa.",
+    que_implica: "Cargar los datos de una persona que se quede en Argentina durante todo el período del programa.",
+    dudas_comunes: [
+      {
+        pregunta: "¿Quién puede ser el contacto de emergencia?",
+        respuesta: "Una persona que se quede en Argentina durante todo el período del programa (no alguien que viaje también).",
       },
     ],
   },
@@ -53,7 +100,19 @@ export const FAQ_DATA: FaqEntry[] = [
     dudas_comunes: [
       {
         pregunta: "¿Tiene fecha de vencimiento?",
-        respuesta: "Sí, en general es válido por 30 días desde su emisión. Si pasó ese tiempo, tenés que pedir uno nuevo.",
+        respuesta: "Sí: tiene que tener una validez de al menos 30 días previos al momento de aplicar a la visa. Conviene pedirlo cerca de esa fecha, no con mucha anticipación.",
+      },
+    ],
+  },
+  {
+    topic: "Carta de la universidad",
+    aliases: ["carta universidad", "university letter"],
+    proposito: "Certificar el período en el que la universidad te habilita a hacer el programa.",
+    que_implica: "Documento firmado por la universidad indicando las fechas de receso académico habilitadas (ej. diciembre a marzo).",
+    dudas_comunes: [
+      {
+        pregunta: "¿Por qué es tan importante esta carta?",
+        respuesta: "Porque esas fechas condicionan directamente cuándo podés trabajar y cuándo podés viajar — no se puede acordar fechas de trabajo o viaje fuera de ese rango.",
       },
     ],
   },
@@ -61,30 +120,22 @@ export const FAQ_DATA: FaqEntry[] = [
     topic: "Curriculum Vitae/Resume",
     aliases: ["CV", "curriculum", "resume"],
     proposito: "Presentar tu formación, experiencia laboral y habilidades a los empleadores estadounidenses.",
-    que_implica: "Un documento (PDF o Word) con tus datos de contacto, educación, experiencia laboral y habilidades.",
+    que_implica: "Armar tu CV obligatoriamente con la plantilla que te da Grupolive, para garantizar que estén todos los datos requeridos.",
     dudas_comunes: [
+      {
+        pregunta: "¿Puedo enviar mi propio CV con otro diseño?",
+        respuesta: "No, solo se aceptan CVs armados con la plantilla que brinda Grupolive; no se aceptan currículums con otro formato.",
+      },
       {
         pregunta: "¿En qué idioma?",
-        respuesta: "En inglés es lo más común, pero podés presentar una versión bilingüe.",
-      },
-      {
-        pregunta: "¿Qué estructura sigo?",
-        respuesta: "Encabezado con datos de contacto, resumen profesional, experiencia, educación, habilidades.",
+        respuesta: "Sí o sí en inglés, porque la entrevista laboral la realiza una persona de Recursos Humanos en Estados Unidos que no habla español.",
       },
     ],
   },
-  {
-    topic: "Formulario DS-2019",
-    aliases: ["DS-2019", "I-20", "form DS-2019"],
-    proposito: "Documento emitido por el sponsor que acredita tu aceptación en el programa.",
-    que_implica: "El sponsor lo genera en su sistema una vez que validó tu documentación.",
-    dudas_comunes: [
-      {
-        pregunta: "¿Yo lo genero o lo envía el sponsor?",
-        respuesta: "Lo genera y envía el sponsor. Vos recibís el documento por mail.",
-      },
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // ETAPA 2 — Entrevista con empleadores
+  // ─────────────────────────────────────────────
   {
     topic: "Esperando match con empleadores",
     aliases: ["match con empleadores", "asignacion empleador"],
@@ -145,6 +196,26 @@ export const FAQ_DATA: FaqEntry[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // ETAPA 3 — Presentación de documentación ante el sponsor
+  // ─────────────────────────────────────────────
+  {
+    topic: "Formulario DS-2019",
+    aliases: ["DS-2019", "form DS-2019"],
+    proposito: "Documento emitido por el sponsor que acredita tu aceptación en el programa.",
+    que_implica: "El sponsor lo genera en su sistema una vez que validó tu documentación y ya tenés oferta laboral firmada.",
+    dudas_comunes: [
+      {
+        pregunta: "¿Yo lo genero o lo envía el sponsor?",
+        respuesta: "Lo genera y envía el sponsor. Vos recibís el documento por mail.",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────
+  // ETAPA 4 — Visado
+  // ─────────────────────────────────────────────
   {
     topic: "Formulario DS-160",
     aliases: ["DS-160", "visa application", "aplicación visa"],
@@ -153,7 +224,7 @@ export const FAQ_DATA: FaqEntry[] = [
     dudas_comunes: [
       {
         pregunta: "¿Cuándo tengo que hacerlo?",
-        respuesta: "Después de que tu empleador firma la oferta. Tu asesor te dará instrucciones.",
+        respuesta: "Después de que tu empleador firma la oferta y el sponsor emite tu DS-2019. Tu asesor te dará instrucciones.",
       },
     ],
   },
@@ -161,11 +232,15 @@ export const FAQ_DATA: FaqEntry[] = [
     topic: "Comprobante de pago de tasa SEVIS",
     aliases: ["pago SEVIS", "I-901 fee", "SEVIS fee"],
     proposito: "Acreditar que pagaste la tasa de mantenimiento del registro SEVIS (Sistema de seguimiento de estudiantes/trabajadores).",
-    que_implica: "Pagar aproximadamente USD 200 vía el sitio web de SEVIS y guardar el comprobante.",
+    que_implica: "Pagar la tasa vía el sitio oficial fmjfee.com y guardar el comprobante. El monto actual es de USD 35, pero puede cambiar, así que conviene confirmarlo antes de pagar.",
     dudas_comunes: [
       {
+        pregunta: "¿Cuánto tengo que pagar?",
+        respuesta: "El monto vigente es de USD 35. Este valor puede actualizarse, así que confirmalo con tu asesor antes de pagar.",
+      },
+      {
         pregunta: "¿Cuándo pago?",
-        respuesta: "Después de que tu empleador complete el DS-2019. Tu asesor te guía con las fechas.",
+        respuesta: "Después de que tu empleador complete el DS-2019 y antes de la entrevista consular. Tu asesor te guía con las fechas.",
       },
     ],
   },
@@ -193,6 +268,10 @@ export const FAQ_DATA: FaqEntry[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // ETAPA 5 — Pre-viaje
+  // ─────────────────────────────────────────────
   {
     topic: "Pasaje aéreo",
     aliases: ["boleto aereo", "flight ticket", "ticket aereo"],

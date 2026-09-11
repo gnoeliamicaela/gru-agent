@@ -1,8 +1,8 @@
 export type EtapaNombre =
   | "Pagos"
   | "Carga y validación de documentación personal y universitaria"
-  | "Presentación de documentación ante el sponsor"
   | "Entrevista con empleadores estadounidenses"
+  | "Presentación de documentación ante el sponsor"
   | "Entrevista consular"
   | "Preparación previa al viaje";
 
@@ -32,16 +32,15 @@ export const STAGE_REQUIREMENTS: StageRequirements[] = [
       { tipo: "documento", nombre: "Pasaporte vigente", orden: 2 },
       { tipo: "documento", nombre: "Certificado de alumno regular", orden: 3 },
       { tipo: "documento", nombre: "Curriculum Vitae/Resume", orden: 4 },
+      { tipo: "documento", nombre: "Datos del participante", orden: 5 },
+      { tipo: "documento", nombre: "Foto tipo CV profesional", orden: 6 },
+      { tipo: "documento", nombre: "Datos de contacto de emergencia", orden: 7 },
+      { tipo: "documento", nombre: "Carta de la universidad", orden: 8 },
     ],
   },
   {
-    etapa: "Presentación de documentación ante el sponsor",
-    orden_etapa: 3,
-    items: [{ tipo: "documento", nombre: "Formulario DS-2019", orden: 1 }],
-  },
-  {
     etapa: "Entrevista con empleadores estadounidenses",
-    orden_etapa: 4,
+    orden_etapa: 3,
     items: [
       { tipo: "hito_proceso", nombre: "Esperando match con empleadores", orden: 1 },
       { tipo: "hito_proceso", nombre: "Esperando entrevista laboral", orden: 2 },
@@ -49,6 +48,11 @@ export const STAGE_REQUIREMENTS: StageRequirements[] = [
       { tipo: "hito_proceso", nombre: "Confirmación de posición y paga", orden: 4 },
       { tipo: "hito_proceso", nombre: "Firma de oferta laboral", orden: 5 },
     ],
+  },
+  {
+    etapa: "Presentación de documentación ante el sponsor",
+    orden_etapa: 4,
+    items: [{ tipo: "documento", nombre: "Formulario DS-2019", orden: 1 }],
   },
   {
     etapa: "Entrevista consular",
