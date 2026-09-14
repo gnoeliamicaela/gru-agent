@@ -103,7 +103,6 @@ export default function ChatWindow({ participant }: ChatWindowProps) {
             {messages.length === 0 && (
               <div className="text-center text-gray-500 mt-8">
                 <p className="text-sm">¿Qué dudas tenés sobre tu proceso?</p>
-                <p className="text-xs mt-2">Podés preguntar sobre documentos, etapas o cualquier cosa relacionada con tu programa.</p>
               </div>
             )}
             {messages.map((msg, i) => (
