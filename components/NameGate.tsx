@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { findParticipantAction } from "@/lib/actions";
+import { findParticipantAction, identifyParticipantWithLastName } from "@/lib/actions";
 import type { Participant } from "@/lib/mock-data";
 
-type GateStatus = "idle" | "error" | "locked" | "loading";
+type GateStatus = "idle" | "error" | "locked" | "loading" | "ambiguous";
 
 interface NameGateProps {
   onValidated: (participant: Participant) => void;
@@ -13,17 +13,75 @@ interface NameGateProps {
 export default function NameGate({ onValidated }: NameGateProps) {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<GateStatus>("idle");
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [pendingFirstName, setPendingFirstName] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
 
-    const participant = await findParticipantAction(input);
-    if (participant) {
-      onValidated(participant);
+    if (pendingFirstName === null) {
+      // First attempt: parse input as "nombre apellido"
+      const parts = input.trim().split(/\s+/);
+      if (parts.length < 2) {
+        setStatus("error");
+        setInput("");
+        return;
+      }
+
+      const nombre = parts[0];
+      const apellido = parts.slice(1).join(" ");
+
+      const result = await identifyParticipantWithLastName(nombre, apellido);
+
+      if (result.status === "identified" && result.participant) {
+        onValidated(result.participant);
+      } else if (result.status === "ambiguous") {
+        // Multiple candidates with same first name
+        setPendingFirstName(nombre);
+        setStatus("ambiguous");
+        setInput("");
+      } else {
+        // Not found
+        setFailedAttempts((prev) => {
+          const newCount = prev + 1;
+          if (newCount >= 2) {
+            setStatus("locked");
+          } else {
+            setStatus("error");
+          }
+          return newCount;
+        });
+        setInput("");
+      }
     } else {
-      setStatus((prev) => (prev === "error" ? "locked" : "error"));
-      setInput("");
+      // Second attempt: input is the last name
+      const apellido = input.trim();
+      if (!apellido) {
+        setStatus("error");
+        setInput("");
+        return;
+      }
+
+      const result = await identifyParticipantWithLastName(pendingFirstName, apellido);
+
+      if (result.status === "identified" && result.participant) {
+        onValidated(result.participant);
+        setPendingFirstName(null);
+      } else {
+        // Failed even with last name provided
+        setFailedAttempts((prev) => {
+          const newCount = prev + 1;
+          if (newCount >= 2) {
+            setStatus("locked");
+          } else {
+            setStatus("error");
+          }
+          return newCount;
+        });
+        setPendingFirstName(null);
+        setInput("");
+      }
     }
   };
 
@@ -42,22 +100,36 @@ export default function NameGate({ onValidated }: NameGateProps) {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                ¿Cuál es tu nombre?
+              <label htmlFor="input" className="block text-sm font-medium text-gray-700 mb-2">
+                {pendingFirstName === null
+                  ? "¡Hola! Soy tu asistente de My Grupolive 👋 Contame tu nombre y apellido para ubicarte en el proceso."
+                  : "Necesito también tu apellido para identificarte bien."}
               </label>
               <input
-                id="name"
+                id="input"
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ingresá tu nombre..."
+                placeholder={
+                  pendingFirstName === null
+                    ? "Ej: Juan García"
+                    : "Ingresá tu apellido..."
+                }
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900 placeholder-gray-700"
               />
             </div>
 
             {status === "error" && (
               <div className="text-red-600 text-sm bg-red-50 p-3 rounded">
-                No te encontramos como participante registrado. Si creés que es un error, contactá a tu asesor.
+                {pendingFirstName === null
+                  ? "Verificá que hayas ingresado tu nombre y apellido correctamente."
+                  : "No encontramos esa combinación de nombre y apellido. Intentá de nuevo."}
+              </div>
+            )}
+
+            {status === "ambiguous" && (
+              <div className="text-blue-600 text-sm bg-blue-50 p-3 rounded">
+                Hay varios participantes con ese nombre. Ingresá tu apellido para confirmarte.
               </div>
             )}
 
@@ -71,9 +143,9 @@ export default function NameGate({ onValidated }: NameGateProps) {
           </form>
         )}
 
-        {status !== "locked" && (
+        {status !== "locked" && pendingFirstName === null && (
           <p className="text-xs text-gray-500 mt-6 text-center">
-            Participantes de prueba: María, Juan, Lucía
+            Participantes de prueba: María García, Juan Pérez, Lucía López
           </p>
         )}
       </div>

@@ -15,6 +15,7 @@ interface AirtableRecord<T> {
 
 interface ParticipanteFields {
   Nombre: string;
+  Apellido: string;
   "Etapa Actual": EtapaNombre;
 }
 
@@ -85,6 +86,61 @@ async function getItemsByParticipantId(
   }));
 }
 
+export async function findParticipantByFullName(
+  nombre: string,
+  apellido: string,
+): Promise<Participant | undefined> {
+  const normalizedNombre = normalize(nombre);
+  const normalizedApellido = normalize(apellido);
+
+  const participants = await fetchAirtable<ParticipanteFields>("Participantes");
+
+  const found = participants.find(
+    (p) =>
+      normalize(p.fields.Nombre) === normalizedNombre &&
+      normalize(p.fields.Apellido) === normalizedApellido,
+  );
+
+  if (!found) {
+    return undefined;
+  }
+
+  const items = await getItemsByParticipantId(found.id);
+
+  return {
+    id: found.id,
+    nombre: found.fields.Nombre,
+    etapa_actual: found.fields["Etapa Actual"],
+    items,
+  };
+}
+
+export async function findParticipantsByFirstName(
+  nombre: string,
+): Promise<Participant[]> {
+  const normalizedNombre = normalize(nombre);
+
+  const participants = await fetchAirtable<ParticipanteFields>("Participantes");
+
+  const matches = participants.filter(
+    (p) => normalize(p.fields.Nombre) === normalizedNombre,
+  );
+
+  const result: Participant[] = [];
+  for (const match of matches) {
+    const items = await getItemsByParticipantId(match.id);
+    result.push({
+      id: match.id,
+      nombre: match.fields.Nombre,
+      etapa_actual: match.fields["Etapa Actual"],
+      items,
+    });
+  }
+
+  return result;
+}
+
+/** @deprecated Use findParticipantByFullName instead */
 export async function findParticipantByName(
   input: string,
 ): Promise<Participant | undefined> {
