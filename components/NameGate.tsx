@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { findParticipantByName, type Participant } from "@/lib/mock-data";
+import { findParticipantAction } from "@/lib/actions";
+import type { Participant } from "@/lib/mock-data";
 
-type GateStatus = "idle" | "error" | "locked";
+type GateStatus = "idle" | "error" | "locked" | "loading";
 
 interface NameGateProps {
   onValidated: (participant: Participant) => void;
@@ -13,10 +14,11 @@ export default function NameGate({ onValidated }: NameGateProps) {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<GateStatus>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("loading");
 
-    const participant = findParticipantByName(input);
+    const participant = await findParticipantAction(input);
     if (participant) {
       onValidated(participant);
     } else {
@@ -61,9 +63,10 @@ export default function NameGate({ onValidated }: NameGateProps) {
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition"
+              disabled={status === "loading"}
+              className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Ingresar
+              {status === "loading" ? "Buscando..." : "Ingresar"}
             </button>
           </form>
         )}

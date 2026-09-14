@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getParticipantById } from "@/lib/mock-data";
+import { getParticipantById } from "@/lib/airtable-service";
 import { getStageRequirements } from "@/lib/stage-requirements";
 import { getFaq } from "@/lib/faq-data";
 import type {
@@ -26,7 +26,7 @@ export async function getParticipantStatus(
   participantId: string,
 ): Promise<ParticipantStatusResult> {
   try {
-    const participant = getParticipantById(participantId);
+    const participant = await getParticipantById(participantId);
 
     if (!participant) {
       return { found: false };

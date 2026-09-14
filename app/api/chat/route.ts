@@ -8,7 +8,7 @@ import { executeTool } from "@/lib/tools/tool-executors";
 import { escalateToStaff } from "@/lib/tools/tool-executors";
 import { truncateHistory } from "@/lib/chat/history";
 import type { ChatRequest, ChatResponse } from "@/lib/chat/types";
-import { getParticipantById } from "@/lib/mock-data";
+import { getParticipantById } from "@/lib/airtable-service";
 
 const chatRequestSchema = z.object({
   participant_id: z.string(),
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const { participant_id, message, history } = validated;
 
     // Verify participant exists
-    const participant = getParticipantById(participant_id);
+    const participant = await getParticipantById(participant_id);
     if (!participant) {
       return NextResponse.json(
         { error: "Participant not found" },
