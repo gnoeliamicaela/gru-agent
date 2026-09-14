@@ -2,7 +2,7 @@
 
 ## Problem
 
-Participants enrolled in the "My Grupolive" Work and Travel cultural exchange program face a complex post-enrollment journey: visa documentation, employer interviews, sponsor submission, consular interview, travel prep. They have frequent, repetitive questions:
+Participants enrolled in a Work and Travel cultural exchange program face a complex post-enrollment journey: visa documentation, employer interviews, sponsor submission, consular interview, travel prep. They have frequent, repetitive questions:
 
 - **Document-specific**: "Why was my certificate rejected?" "What format does the DNI need?" "How do I resubmit?"
 - **Process-specific**: "What comes after this stage?" "When do I interview with the employer?" "What's the next step?"
@@ -20,7 +20,7 @@ An internal Opportunity Solution Tree exercise mapped this problem to a cluster 
 
 ## Why this prototype, not a production system
 
-This is deliberately a **narrow slice** that validates the *agent pattern*, not a full rebuild of My Grupolive:
+This is deliberately a **narrow slice** that validates the *agent pattern*, not a full rebuild of the program:
 
 - **No real auth**: Participants identify by typing their name (free-text, no password/session) — sufficient to prove the concept works, not secure enough for production.
 - **No real data layer**: Participant state is hardcoded in the repo — validates the tool contract and agent reasoning loop, not the data persistence and sync story.

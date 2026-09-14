@@ -169,7 +169,7 @@ Cuando hay error de no encontrado, el mensaje es genérico:
 
 ```bash
 # Terminal 1: Inicia el servidor dev
-cd /Users/noeliagarcia/Desktop/Proyectos\ Claude/My\ Grupolive\ Agent
+cd /Users/noeliagarcia/Desktop/Proyectos\ Claude/Gru\ Agent
 npm run dev
 
 # Terminal 2: Abre el navegador

@@ -4,7 +4,7 @@
 
 1. Ve a https://airtable.com/account/developer/apps
 2. Haz clic en "Create new token"
-3. Dale un nombre: "My Grupolive" (o similar)
+3. Dale un nombre: "Gru Agent" (o similar)
 4. Selecciona los permisos: **data.records:read**
 5. Selecciona la base donde están tus participantes
 6. Copia el token y guárdalo en `.env.local` como `AIRTABLE_API_KEY`

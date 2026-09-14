@@ -120,11 +120,11 @@ export const FAQ_DATA: FaqEntry[] = [
     topic: "Curriculum Vitae/Resume",
     aliases: ["CV", "curriculum", "resume"],
     proposito: "Presentar tu formación, experiencia laboral y habilidades a los empleadores estadounidenses.",
-    que_implica: "Armar tu CV obligatoriamente con la plantilla que te da Grupolive, para garantizar que estén todos los datos requeridos.",
+    que_implica: "Armar tu CV obligatoriamente con la plantilla que te da la agencia, para garantizar que estén todos los datos requeridos.",
     dudas_comunes: [
       {
         pregunta: "¿Puedo enviar mi propio CV con otro diseño?",
-        respuesta: "No, solo se aceptan CVs armados con la plantilla que brinda Grupolive; no se aceptan currículums con otro formato.",
+        respuesta: "No, solo se aceptan CVs armados con la plantilla que brinda la agencia; no se aceptan currículums con otro formato.",
       },
       {
         pregunta: "¿En qué idioma?",

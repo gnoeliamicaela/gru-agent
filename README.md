@@ -1,6 +1,6 @@
-# My Grupolive Agent
+# Gru
 
-A portfolio prototype demonstrating real AI agent tool use (function calling) via the Claude API, rather than classic RAG. The agent helps participants in a Work and Travel cultural exchange program (My Grupolive) resolve post-enrollment questions: document status, sponsor submission, employer interviews, consular interview, and travel prep.
+A portfolio prototype demonstrating real AI agent tool use (function calling) via the Claude API, rather than classic RAG. The agent helps participants in a Work and Travel cultural exchange program resolve post-enrollment questions: document status, sponsor submission, employer interviews, consular interview, and travel prep.
 
 ## Architecture highlights
 

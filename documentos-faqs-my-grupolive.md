@@ -1,8 +1,8 @@
-# Documentos y FAQs — My Grupolive Agent
+# Documentos y FAQs — Gru
 
 ## Etapas post-inscripción
 
-1. **Carga de documentación personal y universitaria** — el participante envía su documentación al inicio del programa; el staff de Grupolive la revisa y la aprueba o rechaza (con reenvío si hay que corregir algo).
+1. **Carga de documentación personal y universitaria** — el participante envía su documentación al inicio del programa; la agencia la revisa y la aprueba o rechaza (con reenvío si hay que corregir algo).
 2. **Confirmación de empleador** — el participante ya tiene job offer aceptada por un empleador en EE.UU.
 3. **Documentación para la visa** — trámites y papeles necesarios para la entrevista consular.
 4. **Entrevista consular** — turno en la embajada/consulado de EE.UU.
@@ -22,7 +22,7 @@
 | DNI | Debe demostrar residencia argentina (la nacionalidad puede ser de otro país). Sirve para acreditar que el participante estudia en Argentina mientras hace el Work and Travel. |
 | Pasaporte vigente | No necesita ser argentino. Validez mínima: al menos 6 meses contados desde el ingreso a Estados Unidos. |
 | Datos de contacto de emergencia | Persona que permanezca en Argentina durante todo el período del programa, a la que se pueda contactar ante cualquier situación con el participante. |
-| Curriculum Vitae / Resume | Debe armarse obligatoriamente con la plantilla que brinda Grupolive (no se aceptan otros formatos), para garantizar que estén todos los datos requeridos. Va en inglés, porque la entrevista laboral la realiza personal de RRHH de EE.UU. que no habla español. |
+| Curriculum Vitae / Resume | Debe armarse obligatoriamente con la plantilla que brinda la agencia (no se aceptan otros formatos), para garantizar que estén todos los datos requeridos. Va en inglés, porque la entrevista laboral la realiza personal de RRHH de EE.UU. que no habla español. |
 | Certificado de alumno regular | Emitido por la universidad, con validez de al menos 30 días previos a la aplicación a la visa. |
 | Carta de la universidad | Documento firmado por la universidad que certifica el período habilitado para hacer el programa (ej. diciembre a marzo); ese período condiciona las fechas de trabajo y de viaje del participante. |
 
@@ -60,7 +60,7 @@
 
 ---
 
-## Estados de la documentación en el sistema My Grupolive
+## Estados de la documentación en el sistema Gru
 
 - **Pendiente**: el participante aún no lo envió.
 - **Enviado**: el participante lo envió pero el staff todavía no lo revisó.
@@ -94,7 +94,7 @@
 - **¿Para qué se usa este contacto?** Para poder comunicarse con alguien de confianza en Argentina si sucede algo con el participante durante el programa.
 
 ### Curriculum Vitae / Resume
-- **¿Puedo enviar mi propio CV con otro diseño?** No, solo se aceptan CVs armados con la plantilla que brinda Grupolive; no se aceptan currículums con otro formato.
+- **¿Puedo enviar mi propio CV con otro diseño?** No, solo se aceptan CVs armados con la plantilla que brinda la agencia; no se aceptan currículums con otro formato.
 - **¿Por qué tiene que ser en la plantilla oficial?** Para garantizar que estén todos los datos que después necesita el empleador.
 - **¿Por qué tiene que estar en inglés?** Porque la entrevista laboral la realiza una persona de Recursos Humanos en Estados Unidos que no habla español.
 
@@ -144,4 +144,4 @@
 - Guías de aseguradoras especializadas en visas J-1 (Insubuy, International Citizens Insurance, VisitorGuard)
 - Guías sobre el formulario DS-160 (VenAmCham, CEAC)
 
-*(Los montos y requisitos de visas cambian con el tiempo — antes de usar esto como contenido final del agente, conviene que alguien de Grupolive confirme que siguen vigentes.)*
+*(Los montos y requisitos de visas cambian con el tiempo — antes de usar esto como contenido final del agente, conviene que alguien de la agencia confirme que siguen vigentes.)*

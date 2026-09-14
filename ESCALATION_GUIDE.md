@@ -47,10 +47,10 @@ Gru: "Entiendo. Déjame escalar esto al staff. ¿Cuál es el motivo específico 
 
 ```typescript
 {
-  para: "staff@mygrupolive.com",
+  para: "support@gru-agent.local",
   asunto: "URGENTE: contactar a {nombre}",
-  remitente: "My Grupolive Agent",
-  remitente_email: "noreply@mygrupolive.com",
+  remitente: "Gru",
+  remitente_email: "noreply@gru-agent.local",
   nombre_participante: "María",
   etapa_actual: "Presentación ante sponsor",
   motivo: "[Lo que escribió el usuario]"
@@ -64,9 +64,9 @@ Gru: "Entiendo. Déjame escalar esto al staff. ¿Cuál es el motivo específico 
 ├───────────────────────────────────────────────────────┤
 │ URGENTE: contactar a María                            │
 ├───────────────────────────────────────────────────────┤
-│ [MG] My Grupolive Agent                               │
-│      <noreply@mygrupolive.com>                        │
-│ Para: staff@mygrupolive.com                           │
+│ [G] Gru                                               │
+│      <noreply@gru-agent.local>                        │
+│ Para: support@gru-agent.local                         │
 ├───────────────────────────────────────────────────────┤
 │ Participante: María                                   │
 │ Etapa actual: Presentación ante sponsor               │
@@ -208,7 +208,7 @@ export async function escalateToStaff(...) {
   
   // Con esto:
   const result = await resend.emails.send({
-    from: "noreply@mygrupolive.com",
+    from: "noreply@gru-agent.local",
     to: emailData.para,
     subject: emailData.asunto,
     html: renderEmailTemplate(emailData),

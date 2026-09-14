@@ -18,10 +18,10 @@ export function buildStaffEmail({
   motivo: string;
 }): StaffEmailData {
   return {
-    para: "staff@mygrupolive.com",
+    para: "support@gru-agent.local",
     asunto: `URGENTE: contactar a ${nombre_participante}`,
-    remitente: "My Grupolive Agent",
-    remitente_email: "noreply@mygrupolive.com",
+    remitente: "Gru",
+    remitente_email: "noreply@gru-agent.local",
     nombre_participante,
     etapa_actual,
     motivo,

@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({
             reply:
               "Che, esto se puso más complicado de lo que pensé — ya se lo derivé a un asesor " +
-              "de My Grupolive para que te ayude con esto puntual. Te van a contactar pronto.",
+              "del programa para que te ayude con esto puntual. Te van a contactar pronto.",
             escalated,
           } satisfies ChatResponse);
         }

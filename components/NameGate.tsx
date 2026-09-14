@@ -89,13 +89,13 @@ export default function NameGate({ onValidated }: NameGateProps) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">My Grupolive</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Gru</h1>
         <p className="text-gray-600 mb-6">Asistente de soporte para participantes</p>
 
         {status === "locked" ? (
           <div className="text-center space-y-4">
             <p className="text-gray-700">
-              No pudimos confirmar tu identidad. Por las dudas no sigas intentando acá — contactá directamente a tu asesor de My Grupolive para que te ayude a ingresar.
+              No pudimos confirmar tu identidad. Por las dudas no sigas intentando acá — contactá directamente a tu asesor del programa para que te ayude a ingresar.
             </p>
           </div>
         ) : (
@@ -103,7 +103,7 @@ export default function NameGate({ onValidated }: NameGateProps) {
             <div>
               <label htmlFor="input" className="block text-sm font-medium text-gray-700 mb-2">
                 {pendingFirstName === null
-                  ? "¡Hola! 👋 Soy Gru, tu asistente de My Grupolive. Estoy acá para acompañarte en cada paso de tu proceso."
+                  ? "¡Hola! 👋 Soy Gru, tu asistente de soporte. Estoy acá para acompañarte en cada paso de tu proceso."
                   : "Necesito también tu apellido para identificarte bien."}
               </label>
               <input

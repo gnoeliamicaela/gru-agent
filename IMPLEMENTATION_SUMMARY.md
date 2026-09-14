@@ -7,10 +7,10 @@
 #### `lib/email/mail-builder.ts`
 - Función `buildStaffEmail(data)` que arma los datos del mail de forma independiente
 - Retorna estructura tipada `StaffEmailData` con:
-  - `para`: staff@mygrupolive.com
+  - `para`: support@gru-agent.local
   - `asunto`: URGENTE: contactar a {nombre}
-  - `remitente`: My Grupolive Agent
-  - `remitente_email`: noreply@mygrupolive.com
+  - `remitente`: Gru
+  - `remitente_email`: noreply@gru-agent.local
   - `nombre_participante`, `etapa_actual`, `motivo`
 - Fácil de reemplazar por un servicio real (Resend/SendGrid) en el futuro sin tocar lógica del chat
 
@@ -21,7 +21,7 @@ Renderiza una previsualización estilo Gmail con:
 - **Encabezado gris**: "✉️ Mail simulado — no enviado"
 - **Asunto**: Texto en negrita, tamaño 18px (clase `text-lg font-bold`)
 - **Remitente**: Avatar circular "MG" + nombre + email entre <>
-- **Para**: staff@mygrupolive.com (alineado con el nombre, no con avatar)
+- **Para**: support@gru-agent.local (alineado con el nombre, no con avatar)
 - **Separador horizontal**: Línea fina (border-gray-200)
 - **Cuerpo del mail**:
   - Nombre del participante
@@ -143,10 +143,10 @@ Gru sabe cómo usar el flujo:
   "emailPreview": {
     "type": "staff-email",
     "data": {
-      "para": "staff@mygrupolive.com",
+      "para": "support@gru-agent.local",
       "asunto": "URGENTE: contactar a Maria",
-      "remitente": "My Grupolive Agent",
-      "remitente_email": "noreply@mygrupolive.com",
+      "remitente": "Gru",
+      "remitente_email": "noreply@gru-agent.local",
       "nombre_participante": "Maria",
       "etapa_actual": "Carga y validación de documentación personal y universitaria",
       "motivo": "Me rechazaron el certificado..."
@@ -205,9 +205,9 @@ escalated = true
 
 ✅ Encabezado simulado tipo Gmail
 ✅ Asunto destacado (18px, negrita)
-✅ Avatar circular con iniciales "MG"
+✅ Avatar circular con iniciales "G"
 ✅ Email del remitente en formato <email>
-✅ Línea "Para: staff@mygrupolive.com"
+✅ Línea "Para: support@gru-agent.local"
 ✅ Separador horizontal
 ✅ Bloques de información: nombre, etapa, motivo
 ✅ Motivo destacado con borde izquierdo y fondo
