@@ -21,16 +21,10 @@ export default function NameGate({ onValidated }: NameGateProps) {
     setStatus("loading");
 
     if (pendingFirstName === null) {
-      // First attempt: parse input as "nombre apellido"
+      // First attempt: parse input (1 word or 2+ words)
       const parts = input.trim().split(/\s+/);
-      if (parts.length < 2) {
-        setStatus("error");
-        setInput("");
-        return;
-      }
-
       const nombre = parts[0];
-      const apellido = parts.slice(1).join(" ");
+      const apellido = parts.length >= 2 ? parts.slice(1).join(" ") : null;
 
       const result = await identifyParticipantWithLastName(nombre, apellido);
 
@@ -42,7 +36,7 @@ export default function NameGate({ onValidated }: NameGateProps) {
         setStatus("ambiguous");
         setInput("");
       } else {
-        // Not found
+        // Not found: increment failed attempts
         setFailedAttempts((prev) => {
           const newCount = prev + 1;
           if (newCount >= 2) {
@@ -55,7 +49,7 @@ export default function NameGate({ onValidated }: NameGateProps) {
         setInput("");
       }
     } else {
-      // Second attempt: input is the last name
+      // Second attempt: input is the last name for disambiguation
       const apellido = input.trim();
       if (!apellido) {
         setStatus("error");
@@ -69,7 +63,7 @@ export default function NameGate({ onValidated }: NameGateProps) {
         onValidated(result.participant);
         setPendingFirstName(null);
       } else {
-        // Failed even with last name provided
+        // Failed even with last name provided: increment failed attempts
         setFailedAttempts((prev) => {
           const newCount = prev + 1;
           if (newCount >= 2) {
@@ -122,7 +116,7 @@ export default function NameGate({ onValidated }: NameGateProps) {
             {status === "error" && (
               <div className="text-red-600 text-sm bg-red-50 p-3 rounded">
                 {pendingFirstName === null
-                  ? "Verificá que hayas ingresado tu nombre y apellido correctamente."
+                  ? "No encontramos ese nombre registrado. Verificá y probá de nuevo."
                   : "No encontramos esa combinación de nombre y apellido. Intentá de nuevo."}
               </div>
             )}
