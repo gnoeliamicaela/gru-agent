@@ -9,7 +9,7 @@ export interface ChecklistItem {
   nombre: string;
   orden: number;
   estado: ChecklistState;
-  motivo_rechazo: string | null;
+  comentario: string | null;
 }
 
 export type NextStep =
@@ -41,7 +41,7 @@ export function getParticipantChecklist(
         nombre: catalogItem.nombre,
         orden: catalogItem.orden,
         estado: "pendiente" as const,
-        motivo_rechazo: null,
+        comentario: null,
       };
     }
 
@@ -51,7 +51,7 @@ export function getParticipantChecklist(
         nombre: catalogItem.nombre,
         orden: catalogItem.orden,
         estado: "completo" as const,
-        motivo_rechazo: null,
+        comentario: participantItem.comentario,
       };
     }
 
@@ -61,7 +61,7 @@ export function getParticipantChecklist(
         nombre: catalogItem.nombre,
         orden: catalogItem.orden,
         estado: "rechazado" as const,
-        motivo_rechazo: participantItem.motivo_rechazo,
+        comentario: participantItem.comentario,
       };
     }
 
@@ -71,7 +71,7 @@ export function getParticipantChecklist(
         nombre: catalogItem.nombre,
         orden: catalogItem.orden,
         estado: "pendiente" as const,
-        motivo_rechazo: null,
+        comentario: participantItem.comentario,
       };
     }
 
@@ -80,7 +80,7 @@ export function getParticipantChecklist(
       nombre: catalogItem.nombre,
       orden: catalogItem.orden,
       estado: "falta" as const,
-      motivo_rechazo: participantItem.motivo_rechazo,
+      comentario: participantItem.comentario,
     };
   });
 }

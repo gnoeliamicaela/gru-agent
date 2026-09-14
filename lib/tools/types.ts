@@ -3,7 +3,7 @@ export interface ParticipantStatusResult {
   participant_id?: string;
   nombre?: string;
   etapa_actual?: string;
-  items?: { tipo: string; nombre: string; estado: string; motivo_rechazo: string | null }[];
+  items?: { tipo: string; nombre: string; estado: string; comentario: string | null }[];
 }
 
 export interface StageRequirementsResult {

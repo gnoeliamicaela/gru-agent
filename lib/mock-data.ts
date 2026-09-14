@@ -9,7 +9,7 @@ export interface ParticipantItem {
   tipo: ItemTipo;
   nombre: string;
   estado: EstadoItem;
-  motivo_rechazo: string | null;
+  comentario: string | null;
 }
 
 export interface Participant {
@@ -29,9 +29,9 @@ export const PARTICIPANTS: Participant[] = [
         tipo: "documento",
         nombre: "Certificado de alumno regular",
         estado: "rechazado",
-        motivo_rechazo: "vencido, hay que pedir uno con fecha de emisión de los últimos 30 días",
+        comentario: "vencido, hay que pedir uno con fecha de emisión de los últimos 30 días",
       },
-      { tipo: "documento", nombre: "DNI", estado: "aprobado", motivo_rechazo: null },
+      { tipo: "documento", nombre: "DNI", estado: "aprobado", comentario: null },
     ],
   },
   {
@@ -39,15 +39,15 @@ export const PARTICIPANTS: Participant[] = [
     nombre: "Juan",
     etapa_actual: "Carga y validación de documentación personal y universitaria",
     items: [
-      { tipo: "documento", nombre: "Curriculum Vitae/Resume", estado: "pendiente", motivo_rechazo: null },
-      { tipo: "documento", nombre: "Certificado de alumno regular", estado: "aprobado", motivo_rechazo: null },
+      { tipo: "documento", nombre: "Curriculum Vitae/Resume", estado: "pendiente", comentario: null },
+      { tipo: "documento", nombre: "Certificado de alumno regular", estado: "aprobado", comentario: null },
     ],
   },
   {
     id: "lucia",
     nombre: "Lucía",
     etapa_actual: "Presentación de documentación ante el sponsor",
-    items: [{ tipo: "documento", nombre: "Formulario DS-2019", estado: "pendiente", motivo_rechazo: null }],
+    items: [{ tipo: "documento", nombre: "Formulario DS-2019", estado: "pendiente", comentario: null }],
   },
 ];
 

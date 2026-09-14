@@ -29,7 +29,7 @@ Asegúrate de que tu base tenga exactamente estas tablas y campos:
 - **Tipo** (single select: "documento" o "hito_proceso")
 - **Nombre** (texto) - ej: "Pasaporte vigente"
 - **Estado** (single select: "pendiente", "aprobado", o "rechazado")
-- **Motivo de Rechazo** (texto largo, opcional) - solo si Estado = "rechazado"
+- **Comentarios** (texto largo, opcional) - notas del staff sobre este item (funciona con cualquier estado: pendiente, aprobado, rechazado)
 
 ## Paso 4: Actualizar `.env.local`
 

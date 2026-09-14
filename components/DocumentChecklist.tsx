@@ -45,9 +45,9 @@ export default function DocumentChecklist({ items }: DocumentChecklistProps) {
           <span className="text-xs text-gray-500 ml-8">
             {getStateLabel(item.estado)}
           </span>
-          {item.estado === "rechazado" && item.motivo_rechazo && (
-            <p className="text-xs text-red-600 ml-8 italic">
-              Motivo: {item.motivo_rechazo}
+          {item.comentario && (
+            <p className="text-xs text-gray-600 ml-8 italic">
+              {item.comentario}
             </p>
           )}
         </div>

@@ -23,7 +23,7 @@ interface ItemFields {
   Tipo: "documento" | "hito_proceso";
   Nombre: string;
   Estado: EstadoItem;
-  "Motivo de Rechazo"?: string;
+  Comentarios?: string;
 }
 
 async function fetchAirtable<T>(
@@ -81,7 +81,7 @@ async function getItemsByParticipantId(
     tipo: item.fields.Tipo,
     nombre: item.fields.Nombre,
     estado: item.fields.Estado,
-    motivo_rechazo: item.fields["Motivo de Rechazo"] || null,
+    comentario: item.fields.Comentarios || null,
   }));
 }
 

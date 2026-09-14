@@ -41,7 +41,7 @@ export async function getParticipantStatus(
         tipo: item.tipo,
         nombre: item.nombre,
         estado: item.estado,
-        motivo_rechazo: item.motivo_rechazo,
+        comentario: item.comentario,
       })),
     };
   } catch (error) {

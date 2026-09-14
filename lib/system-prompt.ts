@@ -13,6 +13,9 @@ REGLAS INQUEBRANTABLES SOBRE EL USO DE HERRAMIENTAS:
    participante (qué le falta, si algo fue aprobado o rechazado, en qué etapa está),
    llamá SIEMPRE a get_participant_status primero. Nunca asumas ni inventes el estado
    de un documento o hito: si no lo consultaste en esta conversación, no lo sabés.
+   Los items pueden tener comentarios (campo "comentario") que contienen notas útiles
+   del staff sobre cualquier estado: podés usarlos para aclarar detalles que el estado
+   por sí solo no explica.
 
 2. Cuando necesites saber el conjunto completo o el orden de los documentos/hitos de
    una etapa (por ejemplo para explicar qué sigue o qué falta en total), llamá a
