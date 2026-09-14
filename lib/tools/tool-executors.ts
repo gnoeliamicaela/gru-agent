@@ -2,6 +2,7 @@ import { z } from "zod";
 import { getParticipantById } from "@/lib/airtable-service";
 import { getStageRequirements } from "@/lib/stage-requirements";
 import { getFaq } from "@/lib/faq-data";
+import { buildStaffEmail } from "@/lib/email/mail-builder";
 import type {
   ParticipantStatusResult,
   StageRequirementsResult,
@@ -18,8 +19,7 @@ const faqInputSchema = z.object({
 });
 
 const escalateInputSchema = z.object({
-  question: z.string(),
-  reason: z.string(),
+  motivo: z.string(),
 });
 
 export async function getParticipantStatus(
@@ -116,7 +116,20 @@ export async function escalateToStaff(
 ): Promise<EscalateResult> {
   try {
     const validated = escalateInputSchema.parse(input);
+    const participant = await getParticipantById(participantId);
 
+    if (!participant) {
+      return { escalated: true, delivered: false };
+    }
+
+    // Build the staff email data
+    const emailData = buildStaffEmail({
+      nombre_participante: participant.nombre,
+      etapa_actual: participant.etapa_actual,
+      motivo: validated.motivo,
+    });
+
+    // Send to webhook if configured
     const webhookUrl = process.env.N8N_WEBHOOK_ESCALATION_URL;
     let delivered = false;
 
@@ -127,8 +140,7 @@ export async function escalateToStaff(
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             participant_id: participantId,
-            question: validated.question,
-            reason: validated.reason,
+            ...emailData,
             timestamp: new Date().toISOString(),
           }),
         });
@@ -140,15 +152,11 @@ export async function escalateToStaff(
     } else {
       console.log(
         "N8N_WEBHOOK_ESCALATION_URL not set; escalation logged but not delivered:",
-        {
-          participant_id: participantId,
-          question: validated.question,
-          reason: validated.reason,
-        },
+        { participant_id: participantId, ...emailData },
       );
     }
 
-    return { escalated: true, delivered };
+    return { escalated: true, delivered, email: emailData };
   } catch (error) {
     console.error("Error in escalateToStaff:", error);
     return { escalated: true, delivered: false };

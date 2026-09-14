@@ -16,7 +16,13 @@ const chatRequestSchema = z.object({
   history: z.array(
     z.object({
       role: z.enum(["user", "assistant"]),
-      content: z.string(),
+      content: z.union([
+        z.string(),
+        z.object({
+          type: z.string(),
+          data: z.unknown(),
+        }),
+      ]),
     }),
   ),
 });
@@ -54,13 +60,16 @@ export async function POST(request: NextRequest) {
     let messages: Anthropic.MessageParam[] = [
       ...truncatedHistory.map((m) => ({
         role: m.role,
-        content: m.content,
+        content: typeof m.content === "string"
+          ? m.content
+          : "[Se mostró previsualización de mail]",
       })),
       { role: "user", content: message },
     ];
 
     let escalated = false;
     let toolTurns = 0;
+    let emailPreview: { type: string; data: unknown } | null = null;
 
     // Main tool-use loop
     while (true) {
@@ -115,13 +124,25 @@ export async function POST(request: NextRequest) {
         const toolResults: Anthropic.ToolResultBlockParam[] = [];
 
         for (const block of toolUseBlocks) {
-          if (block.name === "escalate_to_staff") {
-            escalated = true;
-          }
-
           const result = await executeTool(block.name, block.input, {
             participantId: participant_id,
           });
+
+          if (block.name === "escalate_to_staff") {
+            escalated = true;
+            try {
+              const resultData = JSON.parse(result);
+              if (resultData.email) {
+                emailPreview = {
+                  type: "staff-email",
+                  data: resultData.email,
+                };
+              }
+            } catch (e) {
+              // result parsing failed, ignore
+            }
+          }
+
           toolResults.push({
             type: "tool_result",
             tool_use_id: block.id,
@@ -148,10 +169,13 @@ export async function POST(request: NextRequest) {
         textBlock?.text ||
         "Perdón, tuve un problema para responder. ¿Podés reformular la pregunta?";
 
-      return NextResponse.json({
+      const chatResponse: ChatResponse = {
         reply,
         escalated,
-      } satisfies ChatResponse);
+        ...(emailPreview ? { emailPreview } : {}),
+      };
+
+      return NextResponse.json(chatResponse);
     }
   } catch (error) {
     console.error("Chat endpoint error:", error);

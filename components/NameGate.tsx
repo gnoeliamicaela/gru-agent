@@ -26,6 +26,13 @@ export default function NameGate({ onValidated }: NameGateProps) {
       const nombre = parts[0];
       const apellido = parts.length >= 2 ? parts.slice(1).join(" ") : null;
 
+      // Require both name and last name
+      if (!apellido) {
+        setStatus("error");
+        setInput("");
+        return;
+      }
+
       const result = await identifyParticipantWithLastName(nombre, apellido);
 
       if (result.status === "identified" && result.participant) {
@@ -116,7 +123,9 @@ export default function NameGate({ onValidated }: NameGateProps) {
             {status === "error" && (
               <div className="text-red-600 text-sm bg-red-50 p-3 rounded">
                 {pendingFirstName === null
-                  ? "No encontramos ese nombre registrado. Verificá y probá de nuevo."
+                  ? input.trim().split(/\s+/).length < 2
+                    ? "Por favor ingresá tu nombre Y apellido."
+                    : "No encontramos ese nombre registrado. Verificá y probá de nuevo."
                   : "No encontramos esa combinación de nombre y apellido. Intentá de nuevo."}
               </div>
             )}

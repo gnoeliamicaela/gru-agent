@@ -29,4 +29,13 @@ export interface FaqResult {
 export interface EscalateResult {
   escalated: true;
   delivered: boolean;
+  email?: {
+    para: string;
+    asunto: string;
+    remitente: string;
+    remitente_email: string;
+    nombre_participante: string;
+    etapa_actual: string;
+    motivo: string;
+  };
 }

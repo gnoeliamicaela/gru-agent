@@ -1,10 +1,29 @@
+import type { MessageContent } from "@/lib/chat/types";
+import StaffEmailPreview from "./StaffEmailPreview";
+import type { StaffEmailData } from "@/lib/email/mail-builder";
+
 interface MessageBubbleProps {
   role: "user" | "assistant";
-  content: string;
+  content: MessageContent;
 }
 
 export default function MessageBubble({ role, content }: MessageBubbleProps) {
   const isUser = role === "user";
+  const isString = typeof content === "string";
+  const isStaffEmail = !isString && (content as any).type === "staff-email";
+
+  // Render staff email preview - full width, not in bubble
+  if (isStaffEmail) {
+    const emailData = (content as any).data as StaffEmailData;
+    return (
+      <div className="flex justify-center">
+        <StaffEmailPreview email={emailData} />
+      </div>
+    );
+  }
+
+  // Render regular text message
+  const textContent = isString ? content : String(content);
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4`}>
@@ -15,7 +34,7 @@ export default function MessageBubble({ role, content }: MessageBubbleProps) {
             : "bg-gray-200 text-gray-900 rounded-bl-none"
         }`}
       >
-        <p className="text-sm whitespace-pre-wrap break-words">{content}</p>
+        <p className="text-sm whitespace-pre-wrap break-words">{textContent}</p>
       </div>
     </div>
   );

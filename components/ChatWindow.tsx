@@ -58,6 +58,13 @@ export default function ChatWindow({ participant }: ChatWindowProps) {
       }
 
       const data = await response.json();
+
+      // Add email preview if present
+      if (data.emailPreview) {
+        setMessages((prev) => [...prev, { role: "assistant", content: data.emailPreview }]);
+      }
+
+      // Add text reply
       setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
 
       if (data.escalated) {

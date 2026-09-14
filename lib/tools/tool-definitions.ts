@@ -55,21 +55,20 @@ export const TOOL_DEFINITIONS: Anthropic.Tool[] = [
   {
     name: "escalate_to_staff",
     description:
-      "Deriva la consulta a un asesor humano. Usar cuando, después de consultar las otras herramientas, " +
-      "no se puede resolver la duda con confianza. No inventar una respuesta ni tranquilizar sin datos: escalar en su lugar.",
+      "Crea una previsualización de mail simulado y lo registra para escalar a un asesor humano. " +
+      "Usar cuando el participante quiere ser contactado por insatisfacción con la respuesta, " +
+      "o cuando la consulta requiere intervención humana. El mail simulado aparecerá en el chat.",
     input_schema: {
       type: "object",
       properties: {
-        question: {
+        motivo: {
           type: "string",
-          description: "La pregunta original del participante, en sus palabras.",
-        },
-        reason: {
-          type: "string",
-          description: "Motivo breve de por qué no se pudo resolver con las otras herramientas.",
+          description:
+            "El motivo de la consulta/insatisfacción, en palabras del participante. " +
+            "Esto irá destacado en el cuerpo del mail.",
         },
       },
-      required: ["question", "reason"],
+      required: ["motivo"],
       additionalProperties: false,
     },
   },
