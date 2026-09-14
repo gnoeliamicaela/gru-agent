@@ -20,7 +20,7 @@ interface ParticipanteFields {
 }
 
 interface ItemFields {
-  Participante: string[]; // Array of record IDs
+  Participantes: string[]; // Array of record IDs (note: plural in Airtable)
   Tipo: "documento" | "hito_proceso";
   Nombre: string;
   Estado: EstadoItem;
@@ -74,7 +74,7 @@ async function getItemsByParticipantId(
   const allItems = await fetchAirtable<ItemFields>("Items");
 
   const filtered = allItems.filter((item) => {
-    const participantIds = item.fields.Participante || [];
+    const participantIds = item.fields.Participantes || [];
     return participantIds.includes(participantRecordId);
   });
 
